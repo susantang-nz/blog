@@ -1,0 +1,41 @@
+<%- include("partials/header.ejs") %>
+<section class="container">
+  <div id="edit-page-main">
+    <h2>Edit Post</h2>
+
+    <form id="edit-form" action="/posts/<%= post.id %>/edit" method="POST">
+      <div class="mb-3">
+        <label class="form-label">Title:</label>
+        <input
+          type="text"
+          class="form-control"
+          name="title"
+          value="<%= post.title %>"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Image URL:</label>
+        <input
+          type="text"
+          class="form-control"
+          name="image"
+          value="<%= post.image %>"
+        />
+      </div>
+
+      <div class="form-label">
+        <label class="form-label">Content:</label>
+        <textarea name="content" class="form-control" rows="15" required>
+<%= post.content %></textarea
+        >
+      </div>
+
+      <button class="btn btn-secondary btn-sm" type="submit">
+        Save Changes
+      </button>
+    </form>
+  </div>
+</section>
+<%- include("partials/footer.ejs") %>

@@ -1,0 +1,80 @@
+<%- include("partials/header.ejs") %>
+<div class="container" id="home-page-container">
+  <section class="post-list">
+    <h2>All Posts</h2>
+    <% posts.forEach(post=> { %>
+
+    <article>
+      <a href="/posts/<%= post.id %>">
+        <div class="article-content">
+          <img src="<%= post.image %>" alt="<%= post.title %>" />
+          <div class="article-text">
+            <h3><%= post.title %></h3>
+            <p><small> <%= post.date %> </small></p>
+            <p><%= post.content.slice(0, 200) %>...</p>
+          </div>
+        </div>
+      </a>
+
+      <!-- Delete Button -->
+      <form action="/posts/<%= post.id %>/delete" method="POST">
+        <button id="delete-btn" class="btn btn-secondary btn-sm" type="submit">
+          Delete
+        </button>
+      </form>
+    </article>
+    <% }) %>
+  </section>
+
+  <aside class="add-post-form-panel">
+    <h2>Add a New Post</h2>
+
+    <form id="add-post-form" action="/add" method="POST">
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Title"
+          name="title"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Image URL</label>
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Image URL"
+          name="image"
+          required
+        />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Content</label>
+        <textarea class="form-control" rows="22" name="content"></textarea>
+      </div>
+
+      <!-- <label form-label>Title</label>
+      <input type="text" name="title" placeholder="Title" required />
+
+      <label>Image URL:</label>
+      <input type="text" name="image" placeholder="Image URL" required />
+
+      <label>Content:</label>
+      <textarea
+        type="text"
+        name="content"
+        placeholder="write text here"
+        required
+      ></textarea> -->
+
+      <button id="add-post-btn" type="submit" class="btn btn-primary btn-sm">
+        Add
+      </button>
+    </form>
+  </aside>
+</div>
+<%- include("partials/footer.ejs") %>

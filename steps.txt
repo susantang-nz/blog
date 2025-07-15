@@ -1,0 +1,99 @@
+| 目标                   | 状态     | 内容说明                                              |
+| -------------------- | ------ | ------------------------------------------------- |
+| 1. 确定网站主题            | ✅ 已完成  | 中式家常菜谱博客，聚焦四川风味                                   |
+| 2. 网站名称与定位           | ✅ 已完成  | **Tang’s Recipe Journal - Homemade Sichuan Food** |
+| 3. 拟定初始文章            | ✅ 已完成  | 6 道菜，英文内容，有较长段落                                   |
+| 4. 用户操作流程            | ✅ 进行中  | 添加、查看、编辑、删除食谱                                     |
+| 5. 页面规划 & 路由设计       | 🟡 进行中 | index, new, edit, view 单页或动态内容？                   |
+| 6. 页面布局草图（wireframe） | 🟡 可选  | header/footer/main layout 思考样式，响应式设计              |
+
+
+
+
+your-project-folder/
+│
+├── data/
+│   └── posts.js             <-- 存博客文章数据（标题、内容、图片链接等）
+│
+├── public/
+│   ├── styles/
+│   │   └── main.css         <-- 页面样式
+│   │
+│   └── images/              <-- 放本地使用的图片
+│       ├── mapo-tofu.jpg
+│       ├── kungpao.jpg
+│       └── ...其他图片
+│
+├── views/
+│   ├── partials/
+│   │   ├── header.ejs
+│   │   └── footer.ejs
+│   │
+│   ├── index.ejs
+│   ├── post.ejs
+│   ├── add.ejs
+│   └── edit.ejs
+│
+├── app.js                   <-- 项目主文件
+└── package.json
+
+
+
+| 路径                  | 方法   | 功能        |
+| ------------------- | ---- | --------- |
+| `/`                 | GET  | 显示所有文章    |
+| `/add`              | GET  | 显示添加表单    |
+| `/add`              | POST | 提交新文章     |
+| `/posts/:id`        | GET  | 显示某一篇文章内容 |
+| `/posts/:id/edit`   | GET  | 显示编辑页面    |
+| `/posts/:id/edit`   | POST | 提交编辑结果    |
+| `/posts/:id/delete` | POST | 删除文章      |
+
+
+test image url
+https://cdn.freecodecamp.org/curriculum/cat-photo-app/relaxing-cat.jpg
+
+
+-----------------------
+箭头函数的用法：
+传统写法：
+const add = function(a, b) {
+  return a + b;
+};
+
+箭头函数基本写法：
+const add = (a, b) => {
+  return a + b;
+};
+
+一行的简写，隐式return
+const add = (a, b) => a + b;
+
+所以
+    const index = posts.findIndex(post => (post.id === idToDelete));
+    意义：
+    - 遍历 posts 数组
+    - 找到第一个满足 p.id === id 的对象的index
+    - 把它赋值给 post
+
+可以写成
+    const index = posts.findIndex(post => (p => p.id === idToDelete));
+--------------------------------
+
+
+对象解构赋值（Destructuring Assignment）
+| 想干什么      | 写法                                                 |
+| --------- | -------------------------------------------------- |
+| 直接取字段     | `const { title } = req.body`                       |
+| 取字段 + 改名  | `const { title: postTitle } = req.body`            |
+| 取字段 + 默认值 | `const { image = "/images/x.jpg" } = req.body`     |
+| 改名 + 默认值  | `const { image: postImage = "/x.jpg" } = req.body` |
+
+
+to do:
+header: 修改字体颜色，修改button颜色
+new post needs to be added on the top of the page: posts.unshift（）
+when click delete, ask auth, ask comfirm
+allow image empty,and upload picture, with size info
+填表时候提醒，如果内容为空
+是不是用fs记录数据就可以保存更新的内容

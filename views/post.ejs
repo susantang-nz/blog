@@ -1,0 +1,34 @@
+<%- include("partials/header.ejs") %>
+
+    <section class="container">
+
+        <div id="full-text">
+
+            <div id="full-text-header">
+                <h2 id="full-text-page-title"><%= post.title %></h2>
+                <p><small><%= post.date %></small></p>
+                <img id="full-text-page-img" src="<%= post.image %>" alt="<%= post.title %>">
+                
+            </div>
+
+            <div id="full-text-content">
+                <p><%= post.content %></p>
+            </div>
+
+
+
+ <!-- // 这是一个get请求，HTML 的 <a> 标签 不能发送 DELETE 请求。所以Delete不能用 a ，应该用form表单 post method模拟删除--> 
+            <!-- <form action="/posts/<%= post.id %>/delete" method="POST">
+            <button type="submit">Delete</button>
+            </form> --> 
+            <!-- 该功能已经在首页实现 -->
+
+        <!-- a 是一个get request,它转到get的路由里去处理，从那里渲染一个网页 -->
+            <a id="edit-link" href="/posts/<%=post.id%>/edit">Edit</a>  
+        </div>
+
+
+
+    </section>
+
+    <%- include("partials/footer.ejs") %>
